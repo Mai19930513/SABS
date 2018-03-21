@@ -59,6 +59,7 @@
     <string name="subscribe_to_providers">Subscribe to providers</string>
     <string name="delete_url">Delete URL</string>
     <string name="update_all_providers">Update All</string>
+    <string name="update_selected_providers">Update Selected</string>
     <string name="error_reading_date">Error reading date</string>
     <string name="app_list_sorted_by_date">Sorted by installation date</string>
     <string name="app_list_sorted_by_alphabet">Sorted alphabetically</string>
@@ -126,6 +127,8 @@
     <string name="submit_knox_key">Submit Knox Key</string>
     <string name="copy_knox_key">Copy Knox key</string>
     <string name="standard_package_name">Standard package</string>
+    <string name="small_package_name">Small package</string>
+    <string name="large_package_name">Large package</string>
     <string name="whitelist_settings_small">Unblock a website if you want to see its ads or if it fails to work when blocking is enabled.</string>
     <string name="blacklist_settings_small">Block websites that serve ads not already blocked by your current providers</string>
     <string name="subscribe_settings_small">Add links to lists of ad serving domains</string>

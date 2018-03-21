@@ -111,28 +111,36 @@ public class CustomBlockUrlProviderFragment extends LifecycleFragment {
                 // Create a new app integrity instance
                 AdhellAppIntegrity adhellAppIntegrity = new AdhellAppIntegrity();
 
-                // Remove standard packages
-                adhellAppIntegrity.removeStandardPackage();
-
-                // Add selected blockurlproviders to a list
-                List<BlockUrlProvider> blockUrlProviders = mDb.blockUrlProviderDao().getBlockUrlProviderBySelectedFlag(1);
+                // Get ALL blockurlproviders
+                List<BlockUrlProvider> blockUrlProviders = mDb.blockUrlProviderDao().getAll2();
 
                 // Delete all blocked domains
                 mDb.blockUrlDao().deleteAll();
 
+                // Safety checks
+                adhellAppIntegrity.checkAdhellStandardPackage();
+
                 // For each blockurlprovider
                 for (BlockUrlProvider blockUrlProvider : blockUrlProviders) {
 
-                    try {
-                        List<BlockUrl> blockUrls = BlockUrlUtils.loadBlockUrls(blockUrlProvider);
-                        blockUrlProvider.count = blockUrls.size();
-                        blockUrlProvider.lastUpdated = new Date();
+                    if(blockUrlProvider.selected) {
+                        try {
+                            List<BlockUrl> blockUrls = BlockUrlUtils.loadBlockUrls(blockUrlProvider);
+                            blockUrlProvider.count = blockUrls.size();
+                            blockUrlProvider.lastUpdated = new Date();
+                            mDb.blockUrlProviderDao().updateBlockUrlProviders(blockUrlProvider);
+                            mDb.blockUrlDao().insertAll(blockUrls);
+                        } catch (IOException e) {
+                            Log.e(TAG, "Failed to fetch url from urlProvider", e);
+                        }
+                    }
+                    else
+                    {
+                        blockUrlProvider.count = 0;
                         mDb.blockUrlProviderDao().updateBlockUrlProviders(blockUrlProvider);
-                        mDb.blockUrlDao().insertAll(blockUrls);
-                    } catch (IOException e) {
-                        Log.e(TAG, "Failed to fetch url from urlProvider", e);
                     }
                 }
+
                 if (dialogLoading.isShowing()) {
                     dialogLoading.dismiss();
                 }

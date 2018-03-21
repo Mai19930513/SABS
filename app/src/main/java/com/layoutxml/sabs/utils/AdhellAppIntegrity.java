@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.layoutxml.sabs.App;
+import com.layoutxml.sabs.MainActivity;
 import com.layoutxml.sabs.db.AppDatabase;
 import com.layoutxml.sabs.db.entity.AppInfo;
 import com.layoutxml.sabs.db.entity.AppPermission;
@@ -22,6 +23,7 @@ import com.sec.enterprise.firewall.Firewall;
 import com.sec.enterprise.firewall.FirewallResponse;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -39,12 +41,10 @@ public class AdhellAppIntegrity {
     private static final String MOVE_APP_PERMISSIONS = "adhell_app_permissions_moved";
     private static final String DEFAULT_PACKAGES_FIREWALL_WHITELISTED = "default_packages_firewall_whitelisted";
     private static final String CHECK_ADHELL_STANDARD_PACKAGE = "sabs_standard_package";
-    private static final String ADHELL_STANDARD_PACKAGE = "https://raw.githubusercontent.com/LayoutXML/SABS/master/standard-package.txt";
-    private static final String SABS_MMOTTI_PACKAGE = "https://raw.githubusercontent.com/mmotti/mmotti-host-file/master/wildcard_hosts.txt";
     private static final String CHECK_PACKAGE_DB = "adhell_packages_filled_db";
 
     // Create a list of our mandatory packages
-    private List<String> sabsstandardPackages = new ArrayList<>(Arrays.asList(ADHELL_STANDARD_PACKAGE, SABS_MMOTTI_PACKAGE));
+    private List<String> sabsstandardPackages = new ArrayList<>(Arrays.asList(MainActivity.SABS_SMALL_PACKAGE, MainActivity.SABS_LARGE_PACKAGE, MainActivity.SABS_MMOTTI_PACKAGE));
 
     @Nullable
     @Inject
@@ -233,10 +233,12 @@ public class AdhellAppIntegrity {
             blockUrlProvider = new BlockUrlProvider();
             blockUrlProvider.url = sabspackage;
             blockUrlProvider.lastUpdated = new Date();
-            blockUrlProvider.deletable = false;
+            blockUrlProvider.deletable = true;
             blockUrlProvider.selected = selected;
             blockUrlProvider.policyPackageId = DEFAULT_POLICY_ID;
             blockUrlProvider.id = appDatabase.blockUrlProviderDao().insertAll(blockUrlProvider)[0];
+
+
             // Only fetch the domains if the package is selected
             if(selected) {
                 List<BlockUrl> blockUrls;
@@ -250,76 +252,96 @@ public class AdhellAppIntegrity {
                     Log.e(TAG, "Failed to download urls", e);
                 }
             }
+
         }
-    }
-
-    public void removeStandardPackage()
-    {
-        // Add standard packages to a list
-        List<BlockUrlProvider> standardPackages = appDatabase.blockUrlProviderDao().getStandardLists();
-        // Add selected packages to a list
-        List<BlockUrlProvider> selectedPackages = appDatabase.blockUrlProviderDao().getStandardListsBySelectFlag(1);
-        // Create a new list to hold selected sabs packages
-        List<String> sabsStandardSelectedPackages = new ArrayList<String>();
-
-        // Add each selected standard package to our list
-        for(BlockUrlProvider selectedPackage : selectedPackages)
-        {
-            sabsStandardSelectedPackages.add(selectedPackage.url);
-        }
-
-        // If there are standard packages, delete them
-        if(!standardPackages.isEmpty())
-        {
-            appDatabase.blockUrlProviderDao().deleteStandardLists();
-        }
-
-        // Refresh the standard packages
-        checkAdhellStandardPackage(sabsStandardSelectedPackages);
     }
 
     public void checkAdhellStandardPackage() {
 
+        /* Called by Main Activity */
+
+        // Get all packages
+        List<BlockUrlProvider> allProviders = appDatabase.blockUrlProviderDao().getAll2();
+        // Get all standard packages
+        List<BlockUrlProvider> standardLists = appDatabase.blockUrlProviderDao().getStandardListsNew();
+        // Get all un-deletable packages
+        List<BlockUrlProvider> ud_standardLists = appDatabase.blockUrlProviderDao().getStandardLists();
+        // Get selected un-deletable packages
+        List<BlockUrlProvider> ud_selectedStandardLists = appDatabase.blockUrlProviderDao().getStandardListsBySelectFlag(1);
+        // Create a list to hold the URL of un-deletable packages
+        List<String> ud_selectedactiveStandardListsURLS = new ArrayList<>();
+
         /*
-            This is called by MainActivity. The basic check for whether the standard packages are in the DB.
+            User has NO packages
+            Let's add the standard packages
         */
 
-        // For each SABS standard package
-        for(String sabspackage : sabsstandardPackages) {
-
-            // Get the current iteration's provider from the DB
-            BlockUrlProvider blockUrlProvider = appDatabase.blockUrlProviderDao().getByUrl(sabspackage);
-
-            // If it's not found, add it back and select it (simulate first run)
-            if(blockUrlProvider == null)
-            {
-                constructStandardPackages(sabspackage, true);
-            }
-        }
-    }
-
-    public void checkAdhellStandardPackage(List<String> sabsStandardSelectedPackages) {
-
-         /*
-            This is our more advanced check, called after the Update All Providers has taken place.
-            As we are re-adding the standard packages, we need to take into account whether they
-            were previously selected.
-         */
-
-        // For each SABS standard package
-        for(String sabspackage : sabsstandardPackages)
+        if(allProviders.isEmpty())
         {
-            // If the package was previously selected, keep it so. Otherwise, set selected false
-            if(sabsStandardSelectedPackages.contains(sabspackage))
+            // Add each standard package and select it
+            for(String standardPackage : sabsstandardPackages)
             {
-                constructStandardPackages(sabspackage, true);
+                constructStandardPackages(standardPackage, true);
             }
-            else
+
+            return;
+        }
+
+        /*
+            User has UN-DELETABLE packages
+            Let's re-add them as deletable.
+        */
+
+        if(!ud_standardLists.isEmpty())
+        {
+            // Delete them
+            appDatabase.blockUrlProviderDao().deleteStandardLists();
+
+            // If there were selected standard lists
+            if(!ud_selectedStandardLists.isEmpty())
             {
-                constructStandardPackages(sabspackage, false);
+                // For each one, add the URL to our list
+                for(BlockUrlProvider selectedStandard : ud_selectedStandardLists)
+                {
+                    ud_selectedactiveStandardListsURLS.add(selectedStandard.url);
+                }
+            }
+
+            // For each standard package
+           for(String standardPackage : sabsstandardPackages)
+           {
+               if(ud_selectedactiveStandardListsURLS.contains(standardPackage))
+               {
+                   constructStandardPackages(standardPackage, true);
+               }
+               else
+               {
+                   constructStandardPackages(standardPackage, false);
+               }
+           }
+        }
+
+        /*
+            User has an old default package
+            Let's delete it
+        */
+
+        // If the user has standard lists
+        if(!standardLists.isEmpty())
+        {
+            // For each standard list
+            for(BlockUrlProvider standardList : standardLists)
+            {
+                String URL = standardList.url;
+
+                if(!sabsstandardPackages.contains(URL))
+                {
+                    appDatabase.blockUrlProviderDao().delete(standardList);
+                }
             }
         }
     }
+
 
     public void fillPackageDb() {
         if (appDatabase.applicationInfoDao().getAll().size() > 0) {

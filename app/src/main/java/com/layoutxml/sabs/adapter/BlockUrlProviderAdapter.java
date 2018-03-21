@@ -51,11 +51,11 @@ public class BlockUrlProviderAdapter extends ArrayAdapter<BlockUrlProvider> {
         if (blockUrlProvider != null) {
             Log.d(TAG, blockUrlProvider.url);
             switch (blockUrlProvider.url) {
-                case MainActivity.ADHELL_STANDARD_PACKAGE:
-                    blockUrlProviderTextView.setText(R.string.standard_package_name);
+                case MainActivity.SABS_SMALL_PACKAGE:
+                    blockUrlProviderTextView.setText(R.string.small_package_name);
                     break;
-                case MainActivity.SABS_EXPERIMENTAL_PACKAGE:
-                    blockUrlProviderTextView.setText(R.string.experimental_package);
+                case MainActivity.SABS_LARGE_PACKAGE:
+                    blockUrlProviderTextView.setText(R.string.large_package_name);
                     break;
                 case MainActivity.SABS_MMOTTI_PACKAGE:
                     blockUrlProviderTextView.setText(R.string.mmottis_package);

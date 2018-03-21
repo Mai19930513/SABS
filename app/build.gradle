@@ -24,7 +24,7 @@ android {
         applicationId "com.layoutxm1.mai"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 540
+        versionCode 544
         versionName "0.0.9"
     }
     buildTypes {

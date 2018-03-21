@@ -33,6 +33,9 @@ public interface BlockUrlProviderDao {
     @Query("SELECT * FROM BlockUrlProviders WHERE deletable = 0")
     List<BlockUrlProvider> getStandardLists();
 
+    @Query("SELECT * FROM BlockUrlProviders WHERE policyPackageId = 'default-policy'")
+    List<BlockUrlProvider> getStandardListsNew();
+
     @Query("DELETE FROM blockurlproviders WHERE deletable = 0")
     void deleteStandardLists();
 
