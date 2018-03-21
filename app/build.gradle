@@ -21,7 +21,7 @@ android {
     compileSdkVersion 27
 
     defaultConfig {
-        applicationId "com.layoutxm1.sabs"
+        applicationId "com.layoutxm1.mai"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 540
