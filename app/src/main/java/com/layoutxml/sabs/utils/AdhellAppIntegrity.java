@@ -44,7 +44,7 @@ public class AdhellAppIntegrity {
     private static final String CHECK_PACKAGE_DB = "adhell_packages_filled_db";
 
     // Create a list of our mandatory packages
-    private List<String> sabsstandardPackages = new ArrayList<>(Arrays.asList(MainActivity.SABS_SMALL_PACKAGE, MainActivity.SABS_LARGE_PACKAGE, MainActivity.SABS_MMOTTI_PACKAGE));
+    private List<String> sabsstandardPackages = new ArrayList<>(Arrays.asList(MainActivity.PACKAGE, MainActivity.SABS_MMOTTI_PACKAGE));
 
     @Nullable
     @Inject
@@ -225,7 +225,7 @@ public class AdhellAppIntegrity {
         }
     }
 
-    public void constructStandardPackages(String sabspackage, Boolean selected)
+    private void constructStandardPackages(String sabspackage, Boolean selected)
     {
         BlockUrlProvider blockUrlProvider = appDatabase.blockUrlProviderDao().getByUrl(sabspackage);
 
@@ -237,7 +237,6 @@ public class AdhellAppIntegrity {
             blockUrlProvider.selected = selected;
             blockUrlProvider.policyPackageId = DEFAULT_POLICY_ID;
             blockUrlProvider.id = appDatabase.blockUrlProviderDao().insertAll(blockUrlProvider)[0];
-
 
             // Only fetch the domains if the package is selected
             if(selected) {

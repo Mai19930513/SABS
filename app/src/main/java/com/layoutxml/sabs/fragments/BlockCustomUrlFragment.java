@@ -113,8 +113,24 @@ public class BlockCustomUrlFragment extends LifecycleFragment {
             // Create an empty denylist
             List<String> denyList = new ArrayList<>();
 
-            // Add the blacklist URL
-            denyList.add(dfRule);
+            if (BlockUrlPatternsMatch.domainValid(dfRule))
+            {
+                // Remove www. www1. etc
+                // Necessary as we do it for the denylist, whiteUrls, domain could get through the blocker if it doesn't start with www
+                dfRule = dfRule.replaceAll("^(www)([0-9]{0,3})?(\\.)", "");
+
+                //Block the same domain with www prefix
+                final String urlReady = "*" + dfRule;
+
+                // Add the blacklist URL
+                denyList.add(urlReady);
+
+            } else if (BlockUrlPatternsMatch.wildcardValid(dfRule)) {
+
+                denyList.add(dfRule);
+
+            }
+
 
             // Create a new 'rules' arraylist
             List<DomainFilterRule> denyrules = new ArrayList<>();

@@ -101,11 +101,25 @@ public class WhitelistFragment extends LifecycleFragment {
 
         // If the firewall is enabled
         if(FW.isEnabled()) {
-            // Create an empty denylist
+            // Create an empty allowList
             List<String> allowList = new ArrayList<>();
 
-            // Add the whitelist URL
-            allowList.add(dfRule);
+            if (BlockUrlPatternsMatch.domainValid(dfRule))
+            {
+
+                // Remove www. www1. etc
+                // Necessary as we do it for the denylist
+                dfRule = dfRule.replaceAll("^(www)([0-9]{0,3})?(\\.)", "");
+
+                // Unblock the same domain with www prefix
+                final String urlReady = "*" + dfRule;
+
+                // Add to our array
+                allowList.add(urlReady);
+            } else if (BlockUrlPatternsMatch.wildcardValid(dfRule)) {
+                // Add to our array
+                allowList.add(dfRule);
+            }
 
             // Create a new 'rules' arraylist
             List<DomainFilterRule> allowrules = new ArrayList<>();

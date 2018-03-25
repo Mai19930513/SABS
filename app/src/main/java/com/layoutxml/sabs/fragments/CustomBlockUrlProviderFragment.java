@@ -76,7 +76,7 @@ public class CustomBlockUrlProviderFragment extends LifecycleFragment {
 
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         Boolean blackTheme = sharedPreferences.getBoolean("blackTheme", false);
-        if (BlockedUniqueUrls==0)
+        if (BlockedUniqueUrls==-1)
             BlockedUniqueUrls = sharedPreferences.getInt("blockedUrls", 0);
         uniqueTextView.setText("Blocked unique domains: "+BlockedUniqueUrls+". Note that you need to reapply blocking for the number to update.");
 
