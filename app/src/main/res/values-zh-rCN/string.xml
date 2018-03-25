@@ -1,0 +1,184 @@
+<resources>
+    <string name="loading">加载中…</string>
+    <string name="recent_activity">最近活动</string>
+    <string name="isSupported">加载中…</string>
+    <string name="block_enabled">SABS已启用.</string>
+    <string name="block_disabled">SABS已禁用.</string>
+    <string name="enabling_sabs">正在启用SABS.</string>
+    <string name="disabling_sabs">正在禁用SABS.</string>
+    <string name="app_not_supported">该应用不支持你的设备.如果你的设备为三星制造且未ROOT，请报告给开发者.</string>
+    <string name="steps_to_enable_reminder">1. 点击激活.
+        \n2. 在下面粘贴你的Knox standard SDK enterprise key.如果你没有key，在这里登录 - https://seap.samsung.com/enrollment, 并在 - https://seap.samsung.com/license-keys 得到 <b>Enterprise</b> key ，它应该是128个字节并且不是以KLM开头.</string>
+    <string name="turn_on_admin">激活</string>
+    <string name="activate_knox">激活Knox</string>
+    <string name="no_internet_connection">无网络连接，请打开Wi-Fi或移动数据后重启应用.</string>
+    <string name="activating_knox_license">正在激活…</string>
+    <string name="block_button_text_turn_off">关闭</string>
+    <string name="block_button_text_turn_on">打开</string>
+    <string name="block_button_text_enabling">正在启用…</string>
+    <string name="block_button_text_disabling">正在禁用…</string>
+    <string name="edit_blocked_url_list">管理阻止域名</string>
+    <string name="whitelistInfo">首先考虑将应用列入白名单，不能使用通配符列入白名单，仅可输入有效域名，点击名称可将其删除.</string>
+    <string name="edit_blocked_apps_list">管理在应用中阻止</string>
+    <string name="delete_app">卸载SABS</string>
+    <string name="delete_app_dialog_title">删除应用</string>
+    <string name="delete_app_dialog_text">你确定想关闭并移除SABS吗?</string>
+    <string name="settings">设置</string>
+    <string name="change_dns_button">更改DNS</string>
+    <string name="dns_1_address">DNS 1地址</string>
+    <string name="dns_2_address">DNS 2地址</string>
+    <string name="set_dns_button_text">设置DNS</string>
+    <string name="cancel_text">取消</string>
+    <string name="restore_defaults">恢复默认值</string>
+    <string name="zero_dns" translatable="false">0.0.0.0</string>
+    <string name="example_com" translatable="false">example.com</string>
+    <string name="block">阻止</string>
+    <string name="allow_custom_urls">白名单域名</string>
+    <string name="allow">允许</string>
+    <string name="block_custom_urls">黑名单域名</string>
+    <string name="blacklistInfo">仅可输入一个有效的域名,点击名称将其移除</string>
+    <string name="download_manager_sharedPrefs" translatable="false">download_manager_sharedPrefs</string>
+    <string name="download_manager_reference_id" translatable="false">download_manager_reference_id</string>
+    <string name="blocker_fragment_title">拦截器</string>
+    <string name="package_disabler_fragment_title">禁用软件</string>
+    <string name="package_disabler_bottombar_title">软件禁用</string>
+    <string name="app_support_fragment_title">捐赠</string>
+    <string name="loading_saved_dns">正在加载已保存的DNS地址</string>
+    <string name="check_input_dns">检查你的输入数据</string>
+    <string name="enable_app_for_dns">域名禁用必须打开</string>
+    <string name="changed_dns">DNS地址已更改</string>
+    <string name="restored_dns">DNS地址已还原</string>
+    <string name="help_developers_to_keep_up_development" translatable="false">
+        Well, I\'m not even in college yet.
+        \nIt would be nice to have a spare dollar in the future.
+    </string>
+    <string name="add_provider">添加新地址</string>
+    <string name="error_reading_url">读取URL时错误</string>
+    <string name="error_reading_number">读取数字时错误</string>
+    <string name="subscribe_to_providers">订阅提供商</string>
+    <string name="delete_url">删除URL</string>
+    <string name="update_all_providers">更新全部</string>
+    <string name="update_selected_providers">更新已选择项目</string>
+    <string name="error_reading_date">读取日期时错误</string>
+    <string name="app_list_sorted_by_date">按安装时间排序</string>
+    <string name="app_list_sorted_by_alphabet">按字母顺序排序</string>
+    <string name="subscribe">每月订阅价格{{price}}</string>
+    <string name="subscribe_three_month">订阅三个月价格{{price}},享受20%折扣</string>
+    <string name="subscribeInfo">你可以添加更多域(主机)URL列表，它只能包含域名以及以#开头的注释，其他可能破坏SABS.添加一个URL、更新一个文件或选择(取消选择)一个检查框后，关闭然后再打开.</string>
+    <string name="ads_example_com" translatable="false">example.com</string>
+    <string name="your_device_running_old_knox_version">你的设备正运行一个旧版本的KNOX,升级你的设备或执行更新，否则你可能会遇到某些功能崩溃.</string>
+    <string name="adblock_whitelist">白名单应用</string>
+    <string name="application_icon">应用图标</string>
+    <string name="sort_by_alphabet">按字母顺序排序</string>
+    <string name="sort_by_install_time">按安装时间排序</string>
+    <string name="sort_by_disabled">优先显示已禁用程序</string>
+    <string name="disabler_import_storage">导入禁用软件列表</string>
+    <string name="disabler_export_storage">导出禁用软件列表</string>
+    <string name="disabler_enable_all">启用全部应用</string>
+    <string name="imported_from_storage">从存储中导入禁用软件列表</string>
+    <string name="exported_to_storage">禁用软件列表导出至sabs.txt</string>
+    <string name="enabled_all_disabled">正在启用全部已禁用程序</string>
+    <string name="app_list_sorted_by_disabled">已优先显示已禁用程序</string>
+    <string name="app_profiles_tab_title">简介</string>
+    <string name="app_permissions_tab_title">权限</string>
+    <string name="profiles_explanation">意外错误. 你不应该看到该屏幕.</string>
+    <string name="blog">博客</string>
+    <string name="about_title">关于</string>
+    <string name="icon_image">图表图像</string>
+    <string name="app_name_error">读取应用名称时错误</string>
+    <string name="app_name_hint">搜索</string>
+    <string name="url">网址</string>
+    <string name="turn_on_dialog_title">激活应用程序</string>
+    <string name="next">下一部</string>
+    <string name="skip">跳过</string>
+    <string name="start">开始吧</string>
+
+    <string name="slide_1_title">欢迎!</string>
+    <string name="slide_1_desc">简易的三星广告屏蔽器可以帮你屏蔽广告、网站、权限等,\n更重要的是-它是<b>免费</b>以及<b>开源</b>\n\n要使SABS正常工作，你需要在Manifest文件中编辑更改软件包名或你自己更改包名后重新编译，查看教程:https://github.com/LayoutXML/SABS#setup</string>
+
+    <string name="slide_2_title">KNOX工具</string>
+    <string name="slide_2_desc">SABS使用三星的KNOX工具去禁用系统范围内广告，无需后台运行!KNOX SDK需要管理权限，你将会很快被询问授予其权限.</string>
+
+    <string name="slide_3_title">获取你的免费许可密钥</string>
+    <string name="slide_3_desc">你需要先生成一个许可证密钥. 转到https://seap.samsung.com/enrollment，使用你的三星账户登录. 然后转到https://seap.samsung.com/license-keys/create#section-knox-standard-sdk 并生成如图所示的密钥.
+\n1. 点击\“Legacy SDKs\”
+\n2. 点击\”Knox Standard SDK\”
+\n3. 选择\”Enterprise\”
+\n4. 填写任意字符作为别名
+\n5. 点击生成
+\n 复制你的密钥然后准备粘贴它,如果你的密钥以\"KLM\"开头 - 你生成了错误的密钥.
+</string>
+
+    <string name="slide_4_title">你已经准备好了!</string>
+    <string name="slide_4_desc">请记住 - 如果许可证激活失败了很多次，请卸载并重新安装应用程序.
+    \n如果你认为SABS没有禁用任何广告，请检查最近任务. 如果你想对了，关闭所有广告屏蔽器 (SABS, Adhell, Disconnect等),在SABS中打开并等待一分钟. 然后, 如果你想做的话，你也可以激活你的其他应用程序.</string>
+
+    <string name="settings_edit_url_small">添加,删除网站,订阅提供商</string>
+    <string name="change_dns_menu_small">设置DNS地址1和DNS地址2</string>
+    <string name="allow_apps_menu_small">你想查看广告可关闭屏蔽</string>
+    <string name="info_settings_menu">关于</string>
+    <string name="author">作者: LayoutXML</string>
+    <string name="reddit">Reddit: <u><b>u/LayoutXML</b></u></string>
+    <string name="github"><u><b>github.com/LayoutXML/SABS</b></u></string>
+    <string name="error_version">读取版本号及版本代码时错误</string>
+    <string name="knox_key">Knox密钥</string>
+    <string name="submit_knox_key">提交Knox密钥</string>
+    <string name="copy_knox_key">复制Knox密钥</string>
+    <string name="standard_package_name">标准安装包</string>
+    <string name="small_package_name">小安装包</string>
+    <string name="large_package_name">大安装包</string>
+    <string name="whitelist_settings_small">如果你想查看其广告或者屏蔽启用时失效，可取消屏蔽网站.</string>
+    <string name="blacklist_settings_small">你当前提供商的屏蔽网站未被屏蔽</string>
+    <string name="subscribe_settings_small">添加链接至域名服务列表</string>
+    <string name="summary">概要</string>
+    <string name="summary_small">简易三星广告屏蔽器 (SABS) 是一个由LayoutXML和MMotti维护具有扩展功能的广告屏蔽器.它是基于Adhell的开源项目.</string>
+    <string name="version">检查更新</string>
+    <string name="send_feedback">发送反馈</string>
+    <string name="source_code_github">源代码(Github)</string>
+    <string name="licenses">许可证</string>
+    <string name="licenses_small">查看全部许可证</string>
+    <string name="system">系统应用</string>
+    <string name="system_not">用户应用</string>
+    <string name="about_settings_small">版本,作者,源代码</string>
+    <string name="reload">刷新</string>
+    <string name="sort">排序</string>
+    <string name="options">选项</string>
+    <string name="steps_to_enable_reminder_error_KLM">在下方粘贴你的128字节Knox standard SDK Enterprise密钥,它不应该以KLM开头.</string>
+    <string name="lock_dialog_Title">警告</string>
+    <string name="lock_dialog_body">某些操作可能会使你的系统不稳定，为防止任何更改被应用，请在应用设置中选择\"卸载SABS\"!否则，任何更改系统的操作将会被应用,当你手机在口袋中时，此屏幕显示的任何东西都不会更改，你可以在设置屏幕中禁用这个警告.</string>
+    <string name="ok">好的</string>
+    <string name="exit">退出</string>
+    <string name="undo">放弃</string>
+    <string name="package_name">复制包名</string>
+    <string name="error_packagename">无法获取包名</string>
+    <string name="disabler_share">共享已禁用软件列表</string>
+    <string name="logo">商标</string>
+    <string name="miscellaneous">杂项</string>
+    <string name="miscellaneousDesc">其他不适合分类的设置</string>
+    <string name="delete_app_desc">关闭屏蔽并卸载应用.</string>
+    <string name="misc_settings">杂项</string>
+    <string name="show_warning">显示警告</string>
+    <string name="show_warning_desc">在应用启动时显示警告，以防止手机在口袋中被意外按下.</string>
+    <string name="use_black_theme">使用暗色主题</string>
+    <string name="use_black_theme_desc">设置为AMOLED黑色，然后重启应用</string>
+    <string name="block_port_53">屏蔽端口:53</string>
+    <string name="block_port_53_desc">在Chrome(稳定版,金丝雀版,测试版,开发者版)屏蔽端口53，以便在这些应用中阻止广告，更改值后，关闭屏蔽然后打开. </string>
+    <string name="miscblockall_desc">在所有应用在屏蔽53端口(不推荐)</string>
+    <string name="experimental_package">实验软件包</string>
+    <string name="mmottis_package">mmotti\'s包</string>
+    <string name="donate_dialog_title">捐赠?</string>
+    <string name="donate_dialog_message">如果你喜欢SABS,你可以通过Paypal或Google Play 捐赠LayoutXML.你想这么做吗 ?</string>
+    <string name="donate">捐赠</string>
+    <string name="donateDesc">支持SABS发展</string>
+    <string name="summary_donate">你可以通过Google Play或Paypal购买支持应用捐赠给LayoutXML,我是一个即将上大学的学生,每一美元都有帮助.</string>
+    <string name="donate_gp">Google Play</string>
+    <string name="donate_gp_desc">你可以在Google Play购买一个应用无需做什么事</string>
+    <string name="donate_pp">Paypal</string>
+    <string name="donate_pp_desc">你可以在Paypal捐赠想要捐赠的钱</string>
+    <string name="action_export_hint">导出唯一的屏蔽域名</string>
+    <string name="action_change_days_hint">更改显示时间</string>
+    <string name="force_stop_theme_store">强制停止主题商店</string>
+    <string name="force_stop_theme_store_desc">防止主题商店被启动以便使用来着XDA的自定义主题</string>
+    <string name="restore_permissions">还原权限</string>
+    <string name="restore_permissions_message">你确定要还原全部权限?</string>
+</resources>
