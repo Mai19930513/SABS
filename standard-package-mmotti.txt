@@ -312,7 +312,6 @@ actionsplash.com
 activity.serving-sys.com
 acvs.mediaonenetwork.net
 acvsrv.mediaonenetwork.net
-ad.*
 ad0.haynet.com
 ad001.ru
 ad01.adonspot.com
